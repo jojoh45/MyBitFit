@@ -16,7 +16,6 @@ import android.view.View
 class MainActivity : AppCompatActivity(){
 
     lateinit var foods: ArrayList<Food>
-    var counter = 0
     var numOfItems = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +26,8 @@ class MainActivity : AppCompatActivity(){
         val adapte = FoodAdapter(foods)
         val foodRv = findViewById<RecyclerView>(R.id.foodRv)
         foodRv.adapter = adapte
-        //adapte.notifyItemInserted(numOfItems)
+        adapte.notifyItemInserted(numOfItems)
         foodRv.layoutManager = LinearLayoutManager(this)
-        //counter ++
 
 
     }
@@ -38,6 +36,7 @@ class MainActivity : AppCompatActivity(){
         val addFoodButton = findViewById<Button>(R.id.addFoodbutton)
         addFoodButton.setOnClickListener{
             startActivity(Intent(this@MainActivity,addFoodActivity::class.java))
+            numOfItems --
         }
 
     }

@@ -29,14 +29,9 @@ class addFoodActivity : AppCompatActivity() {
         recordButton.setOnClickListener {
             val nameETtoString = nameET.text.toString()
             val calsETtoString = calsET.text.toString()
-            val rv = findViewById<RecyclerView>(R.id.foodRv)
-            foods = getFood.getTheFood() as ArrayList<Food>
-            val adap = FoodAdapter(foods)
-            //rv.adapter = adap
-            foods.add(0, Food(nameETtoString,calsETtoString))
 
-            //adap.notifyItemInserted(numOfItems)
-            //numOfItems --
+            foods = getFood.getTheFood() as ArrayList<Food>
+            foods.add(0, Food(nameETtoString,calsETtoString))
 
             finishMethod()
         }
