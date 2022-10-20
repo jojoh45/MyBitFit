@@ -12,31 +12,39 @@ import android.content.Context
 import android.content.Intent
 import android.opengl.Visibility
 import android.view.View
-
+// For the main screen
 class MainActivity : AppCompatActivity(){
 
     lateinit var foods: ArrayList<Food>
     var numOfItems = 0
-
+    val ad = addFoodActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        confugureNextScreenButton()
-        foods = getFood.getTheFood() as ArrayList<Food>
-        val adapte = FoodAdapter(foods)
-        val foodRv = findViewById<RecyclerView>(R.id.foodRv)
-        foodRv.adapter = adapte
-        adapte.notifyItemInserted(numOfItems)
-        foodRv.layoutManager = LinearLayoutManager(this)
 
+        confugureNextScreenButton()
+
+        //val foodRv = findViewById<RecyclerView>(R.id.foodRv)
+        //foods = getFood.getTheFood() as ArrayList<Food>
+        //val adapte = FoodAdapter(foods)
+        //foodRv.adapter = adapte
+        //adapte.notifyItemInserted(0)
+        //foodRv.layoutManager = LinearLayoutManager(ad)
+        //numOfItems ++
 
     }
 
     private fun confugureNextScreenButton(){
         val addFoodButton = findViewById<Button>(R.id.addFoodbutton)
+        val foodRv = findViewById<RecyclerView>(R.id.foodRv)
+        foods = getFood.getTheFood() as ArrayList<Food>
+        val adapte = FoodAdapter(foods)
+        foodRv.adapter = adapte
+        foodRv.layoutManager = LinearLayoutManager(ad)
+
         addFoodButton.setOnClickListener{
             startActivity(Intent(this@MainActivity,addFoodActivity::class.java))
-            numOfItems --
+            //numOfItems --
         }
 
     }

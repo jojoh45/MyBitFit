@@ -4,8 +4,8 @@ package com.example.mybitfit
 
 class getFood {
     companion object{
-        var name = "burger"
-        var cals = "990"
+        var name = ""
+        var cals = ""
 
         var items: MutableList<Food> = ArrayList()
         fun getTheFood(): MutableList<Food> {

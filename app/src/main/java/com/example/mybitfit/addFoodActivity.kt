@@ -10,7 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+
+const val FOOD_EXTRA = "FOOD_EXTRA"
+
+
 class addFoodActivity : AppCompatActivity() {
+
+
 
     lateinit var foods: ArrayList<Food>
     var counter = 0
@@ -28,16 +34,23 @@ class addFoodActivity : AppCompatActivity() {
 
         recordButton.setOnClickListener {
             val nameETtoString = nameET.text.toString()
-            val calsETtoString = calsET.text.toString()
+            val calsETtoString = calsET.text.toString() + "\nCalories"
 
-            foods = getFood.getTheFood() as ArrayList<Food>
-            foods.add(0, Food(nameETtoString,calsETtoString))
-
-            finishMethod()
+            for(i in 0..counter){
+                foods = getFood.getTheFood() as ArrayList<Food>
+                //val ads = FoodAdapter(foods)
+                foods.add(0, Food(nameETtoString,calsETtoString))
+                //ads.notifyItemInserted(numOfItems)
+                numOfItems --
+                finishMethod()
+            }
         }
     }
 
     private fun finishMethod(){
-        finish()
+        val intent = Intent(this,MainActivity::class.java)
+        intent.putExtra("FOOD_EXTRA","Bacon")
+        startActivity(intent)
+        //finish()
     }
 }

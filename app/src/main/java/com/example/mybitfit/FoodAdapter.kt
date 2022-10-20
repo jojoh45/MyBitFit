@@ -41,4 +41,5 @@ class FoodAdapter(private val foods: List<Food>) : RecyclerView.Adapter<FoodAdap
     override fun getItemCount(): Int {
         return foods.size
     }
+
 }
