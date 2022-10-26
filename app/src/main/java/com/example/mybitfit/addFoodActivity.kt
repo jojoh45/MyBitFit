@@ -7,8 +7,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 
 
 const val FOOD_EXTRA = "FOOD_EXTRA"
@@ -18,7 +21,7 @@ class addFoodActivity : AppCompatActivity() {
 
 
 
-    lateinit var foods: ArrayList<Food>
+    lateinit var foods: ArrayList<DisplayFood>
     var counter = 0
     var numOfItems = 0
 
@@ -36,21 +39,29 @@ class addFoodActivity : AppCompatActivity() {
             val nameETtoString = nameET.text.toString()
             val calsETtoString = calsET.text.toString() + "\nCalories"
 
-            for(i in 0..counter){
-                foods = getFood.getTheFood() as ArrayList<Food>
-                //val ads = FoodAdapter(foods)
-                foods.add(0, Food(nameETtoString,calsETtoString))
-                //ads.notifyItemInserted(numOfItems)
-                numOfItems --
-                finishMethod()
-            }
+
+            foods = getFood.getTheFood() as ArrayList<DisplayFood>
+            //val ads = FoodAdapter(foods)
+            foods.add(0, DisplayFood(nameETtoString,calsETtoString))
+            //ads.notifyItemInserted(numOfItems)
+            //numOfItems --
+            lifecycleScope.launch(IO){
+                (application as FoodApplication).db.foodDao().deleteAll()
+                (application as FoodApplication).db.foodDao().insertAll(foods.map {
+                    FoodEntity(
+                        name = nameETtoString,
+                        cals = calsETtoString
+                        )
+                    })
+                }
+            finishMethod()
         }
     }
 
     private fun finishMethod(){
-        val intent = Intent(this,MainActivity::class.java)
-        intent.putExtra("FOOD_EXTRA","Bacon")
-        startActivity(intent)
-        //finish()
+        //val intent = Intent(this,MainActivity::class.java)
+        //intent.putExtra("FOOD_EXTRA","Bacon")
+        //startActivity(intent)
+        finish()
     }
 }

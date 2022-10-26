@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class FoodAdapter(private val foods: List<Food>) : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
+class FoodAdapter(private val foods: List<DisplayFood>) : RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
     public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         //TextViews that are in the food_list xml
@@ -33,7 +33,7 @@ class FoodAdapter(private val foods: List<Food>) : RecyclerView.Adapter<FoodAdap
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int){
-        val items: Food = foods.get(position)
+        val items: DisplayFood = foods.get(position)
         holder.foodMainTextView.text = items.name
         holder.calMainTextView.text = items.cals
     }

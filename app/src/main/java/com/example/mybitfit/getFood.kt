@@ -7,10 +7,10 @@ class getFood {
         var name = ""
         var cals = ""
 
-        var items: MutableList<Food> = ArrayList()
-        fun getTheFood(): MutableList<Food> {
+        var items: MutableList<DisplayFood> = ArrayList()
+        fun getTheFood(): MutableList<DisplayFood> {
 
-            val listItems = Food(name,cals)
+            val listItems = DisplayFood(name,cals)
             items.add(listItems)
             return items
         }
