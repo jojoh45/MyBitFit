@@ -46,7 +46,7 @@ class addFoodActivity : AppCompatActivity() {
             //ads.notifyItemInserted(numOfItems)
             //numOfItems --
             lifecycleScope.launch(IO){
-                (application as FoodApplication).db.foodDao().deleteAll()
+                //(application as FoodApplication).db.foodDao().deleteAll()
                 (application as FoodApplication).db.foodDao().insertAll(foods.map {
                     FoodEntity(
                         name = nameETtoString,
