@@ -2,7 +2,7 @@
 
 Submitted by: Jordan Johnson
 
-MyBitFit is a health metrics app that allows users to track ... [TODO] 
+MyBitFit is a health metrics app that allows users to track the number of calories of certain food. It also shows the minimum, maximum and average number of calories. 
 
 Time spent: 15 hours spent in total
 
